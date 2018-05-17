@@ -17,4 +17,15 @@ public interface IAccountService {
     Account findAccountById(int id);
 
     List<Account> findAccountList();
+
+    //mybatis
+    int add_m(String name, double money);
+
+    int update_m(String name, double money, int id);
+
+    int delete_m(int id);
+
+    Account findAccount_m(int id);
+
+    List<Account> findAccountList_m();
 }

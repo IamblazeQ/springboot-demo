@@ -5,10 +5,7 @@ import com.eshore.springboot.config.dao.IUserDAO;
 import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,18 @@ public class UserController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<User> getAccounts() {
         return userDAO.findAll();
+    }
+
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    public String updateAccount(@PathVariable("id") int id, @RequestParam(value = "userName", required = true) String userName,
+                                @RequestParam(value = "age", required = true) int age) {
+        User user = new User();
+        user.setId(id);
+        user.setUserName(userName);
+        user.setAge(age);
+        User r_user = userDAO.saveAndFlush(user);
+        return r_user.toString();
+
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

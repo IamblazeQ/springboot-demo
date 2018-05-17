@@ -19,12 +19,14 @@ public class AccountController {
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public List<Account> getAccounts(){
-        return accountService.findAccountList();
+        //return accountService.findAccountList();//jpa
+        return accountService.findAccountList_m(); //mybatis
     }
 
     @RequestMapping(value = "/query/{id}",method = RequestMethod.GET)
     public  Account getAccountById(@PathVariable("id") int id){
-        return accountService.findAccountById(id);
+        //return accountService.findAccountById(id);
+        return accountService.findAccount_m(id);//mybatis
     }
 
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
