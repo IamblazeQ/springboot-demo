@@ -1,9 +1,11 @@
 package com.eshore.springboot.config.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Blaze on 2018/5/15.
  */
-public class Account {
+public class Account implements Serializable{
     private int id;
     private String name;
     private double money;

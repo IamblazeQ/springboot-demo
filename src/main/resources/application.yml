@@ -10,16 +10,44 @@ my:
 spring:
   profiles:
     active: pro
-
-spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/springboot?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false
     username: root
     password: eshore
-
   jpa:
     hibernate:
       ddl-auto: update  # 第一次简表create  后面用update
-    show-sql: true
-    open-in-view: true
+      show-sql: true
+  data:
+    mongodb:
+      #primary:          #MongoDB 多数据源配置
+        #host: localhost
+        #port: 27017
+        #database: springboot-mongodb
+      #secondary:        #MongoDB 多数据源配置
+        #host: localhost
+        #port: 27017
+        #database: springboot-mongodb1
+      uri: mongodb://localhost:27017/springboot-mongodb #默认端口，未配置用户密码
+      #默认端口，配置用户名密码
+      #uri: mongodb://name:pwd@localhost:27017/dbname
+#################redis基础配置###################
+  redis:
+    host: localhost
+    port: 6379
+    database: 1
+    pool:
+      #最大连接数
+      max-active: 8
+      #最大阻塞等待时间(负数表示没限制)
+      max-wait: -1
+      #最大空闲
+      max-idle: 8
+      #最小空闲
+      min-idle: 0
+    #连接超时时间
+    timeout: 10000
+mybatis:
+    mapper-locations: classpath*:mybatis/*Mapper.xml
+    type-aliases-package: com.eshore.springboot.config.bean
